@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Student {
+
+    private String name;
+    private double test1;
+    private double test2;
+
+    // Constructor with 1 argument (student name)
+    public Student(String studentName) {
+        this.name = studentName;
+        this.test1 = 0.0;
+        this.test2 = 0.0;
+    }
+
+    public void printName() {
+        System.out.println("Student Name: " + name);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Prompts for test scores with validation (0 to 100)
+    public void inputGrades() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter score for Test 1 for " + name + ": ");
+        double grade1 = scanner.nextDouble();
+        while (grade1 < 0 || grade1 > 100) {
+            System.out.println("Invalid grade! Must be between 0 and 100.");
+            System.out.print("Re-enter score for Test 1: ");
+            grade1 = scanner.nextDouble();
+        }
+        this.test1 = grade1;
+
+        System.out.print("Enter score for Test 2 for " + name + ": ");
+        double grade2 = scanner.nextDouble();
+        while (grade2 < 0 || grade2 > 100) {
+            System.out.println("Invalid grade! Must be between 0 and 100.");
+            System.out.print("Re-enter score for Test 2: ");
+            grade2 = scanner.nextDouble();
+        }
+        this.test2 = grade2;
+    }
+
+    public double getAverage() {
+        return (test1 + test2) / 2.0;
+    }
+
+    // toString method for proper string representation when printing object directly
+    @Override
+    public String toString() {
+        return "Name: " + name + " Test1: " + (int)test1 + " Test2: " + (int)test2;
+    }
+}
